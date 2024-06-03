@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use("/auth", authRoutes)
-app.use("/users", userRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(3000, () => {
   console.log("server running on localhost:3000");

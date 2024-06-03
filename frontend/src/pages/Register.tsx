@@ -6,6 +6,10 @@ export type RegisterFormData = {
   firstName: string;
   lastName: string;
   email: string;
+  phoneNumber: number;
+  membershipId: number;
+  aadharId: number;
+  panId: string;
   password: string;
   confirmPassword: string;
 };
@@ -68,6 +72,86 @@ const Register = () => {
           )}
       </label>
       <label className="text-gray=700 text-sm font-bold flex-1">
+        CA Membership ID
+        <input
+          maxLength={1}
+          type="number"
+          className="border rounded w-full py-1 px-2 font-normal"
+          {...register("membershipId", { required: "This field is required" })}
+        />
+        {errors.membershipId && (
+            <span className="text-red-500">{errors.membershipId.message} </span>
+          )}
+      </label>
+      <div className="flex flex-col md:flex-row gap-5">
+      <label className="text-gray=700 text-sm font-bold flex-1">
+        Phone Number
+        <input
+          type="number"
+          className="border rounded w-full py-1 px-2 font-normal"
+          {...register("phoneNumber", { required: "This field is required" })}
+        />
+        {errors.phoneNumber && (
+            <span className="text-red-500">{errors.phoneNumber.message} </span>
+          )}
+      </label>
+      <label className="text-gray=700 text-sm font-bold flex-1">
+        OTP
+        <input
+          type="number"
+          className="border rounded w-full py-1 px-2 font-normal"
+        />
+      </label>
+      </div>
+      <span>
+        <button
+          type="submit"
+          className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xs"
+        >
+          Generate SMS-based OTP
+        </button>
+      </span>
+      <div className="flex flex-col md:flex-row gap-5">
+      <label className="text-gray=700 text-sm font-bold flex-1">
+        Aadhar Number
+        <input
+          type="number"
+          className="border rounded w-full py-1 px-2 font-normal"
+          {...register("aadharId", { required: "This field is required" })}
+        />
+        {errors.aadharId && (
+            <span className="text-red-500">{errors.aadharId.message} </span>
+          )}
+      </label>
+      <label className="text-gray=700 text-sm font-bold flex-1">
+        OTP
+        <input
+          type="number"
+          className="border rounded w-full py-1 px-2 font-normal"
+        />
+      </label>
+      </div>
+      <span>
+        <button
+          type="submit"
+          className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xs"
+        >
+          Generate Aadhar-based OTP
+        </button>
+      </span>
+      <label className="text-gray=700 text-sm font-bold flex-1">
+        PAN Number
+        <input
+          type="string"
+          className="border rounded w-full py-1 px-2 font-normal"
+          {...register("panId", { required: "This field is required" })}
+        />
+        {errors.panId && (
+            <span className="text-red-500">{errors.panId.message} </span>
+          )}
+      </label>
+      <div className="flex flex-col md:flex-row gap-5">
+      <label className="text-gray=700 text-sm font-bold flex-1">
         Password
         <input
           type="password"
@@ -103,6 +187,7 @@ const Register = () => {
             <span className="text-red-500">{errors.confirmPassword.message} </span>
           )}
       </label>
+      </div>
       <span>
         <button
           type="submit"

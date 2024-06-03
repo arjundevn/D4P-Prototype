@@ -5,13 +5,25 @@ import { check, validationResult } from "express-validator";
 
 const router = express.Router();
 
-//Route for register
+//Route for register: /api/users/register
 router.post(
   "/register",
   [
     check("firstName", "First name is required").isString(),
     check("lastName", "Last name is required").isString(),
     check("email", "Email is required").isEmail(),
+    check("phoneNumber", "Phone number is required")
+      .isNumeric()
+      .isLength({ min: 10, max:10 }),
+    check("membershipId", "CA Membership ID is required")
+      .isNumeric()
+      .isLength({ min: 6, max: 6 }),
+    check("aadharId", "Aadhar Number is required")
+      .isNumeric()
+      .isLength({ min: 12, max: 12 }),
+    check("panId", "PAN Number is required")
+      .isString()
+      .isLength({ min: 10, max: 10 }),
     check(
       "password",
       "Password with 6 or more characters is required"
@@ -45,7 +57,7 @@ router.post(
         secure: process.env.NODE_ENV === "production",
         maxAge: 86400000,
       });
-      return res.status(200).send({ message: "User registered OK"});
+      return res.status(200).send({ message: "User registered OK" });
     } catch (error) {
       console.log(error);
       res.status(500).send({ message: "Something went wrong" });

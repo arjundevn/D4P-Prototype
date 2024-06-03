@@ -7,6 +7,10 @@ export type UserType = {
     password: string;
     firstName: string;
     lastName: string;
+    phoneNumber: number;
+    membershipId: number;
+    aadharId: number;
+    panId: string;
 }
 
 const userSchema = new mongoose.Schema({
@@ -14,6 +18,10 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
+    phoneNumber: { type: Number, required: true },
+    membershipId: { type: Number, required: true, unique: true },
+    aadharId: { type: Number, required: true, unique: true },
+    panId: { type: String, required: true, unique: true },
 });
 
 userSchema.pre("save", async function (next) {
